@@ -1,0 +1,17 @@
+services:
+  postgres-flashcards:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=Flashcards
+    ports:
+      - 5432:5432
+    volumes:
+      - ./SQL/Database.sql:/docker-entrypoint-initdb.d/Database.sql
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
